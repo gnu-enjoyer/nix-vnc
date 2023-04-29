@@ -10,13 +10,21 @@
     },
   
     "runArgs": [
-      "--security-opt", "label=disable"
+      "--security-opt", "label=disable", "--init", "--shm-size=1g"
     ],
 
     "overrideCommand": false,
     "userEnvProbe": "loginShell",
     "updateRemoteUserUID": false,  
-    "forwardPorts": [],
+    "forwardPorts": [6080, 5901],
+
+    "features": {
+      "desktop-lite": {
+          "password": "vscode",
+          "webPort": "6080",
+          "vncPort": "5901"
+      }
+    },
 
     "customizations": {
         "vscode": {
@@ -24,10 +32,5 @@
                 "arrterian.nix-env-selector"
             ]
         }
-    },
-      
-    "containerEnv": {
-        "PRELOAD_EXTENSIONS": "arrterian.nix-env-selector"
-      }
-    
-  }
+    }   
+}
